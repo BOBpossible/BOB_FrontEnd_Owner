@@ -26,7 +26,12 @@ export const StoreInfo = () => {
 
   return (
     <ScrollView style={{backgroundColor: '#FFFFFF'}}>
-      <ImageSwiper height={220} imageList={storeImages.data} />
+      {storeImages.isLoading ? (
+        <ImageSwiper height={220} imageList={[]} />
+      ) : (
+        <ImageSwiper height={220} imageList={storeImages.data} />
+      )}
+
       <View style={[styles.storeInfoWrap]}>
         <View style={[styles.infoFieldWrap]}>
           <Text style={[DesignSystem.title4Md, DesignSystem.grey17]}>상호명</Text>
@@ -82,7 +87,11 @@ export const StoreInfo = () => {
             대표메뉴 사진
           </Text>
           <View>
-            <RenderImageList imageData={menuImages.data} imageSize={100} />
+            {menuImages.isLoading ? (
+              <RenderImageList imageData={[]} imageSize={100} />
+            ) : (
+              <RenderImageList imageData={menuImages.data} imageSize={100} />
+            )}
           </View>
           {/* 가게관리에서 메뉴 이미지수정되면 살리기 */}
         </View>
