@@ -2,6 +2,7 @@ import {Pressable, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import type {FC} from 'react';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import {DesignSystem} from '../../assets/DesignSystem';
 
 type CheckBoxRectangleProps = {
   onPress: () => void;
@@ -22,7 +23,7 @@ export const CheckBoxRectangle: FC<CheckBoxRectangleProps> = ({onPress, title, i
           />
         </View>
       </Pressable>
-      <Text style={[styles.title]}>{title}</Text>
+      <Text style={[DesignSystem.body1Lt, DesignSystem.grey10, styles.title]}>{title}</Text>
     </View>
   );
 };
@@ -33,23 +34,21 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'row',
     // width: '100%',
-    marginLeft: 8,
+    marginLeft: 4,
   },
   title: {
-    fontSize: 16,
-    color: '#000',
     marginLeft: 16,
   },
   markedCircle: {
-    width: 24,
-    height: 24,
+    width: 18,
+    height: 18,
     backgroundColor: '#616161',
     justifyContent: 'center',
     alignItems: 'center',
   },
   unmarkedCircle: {
-    width: 24,
-    height: 24,
+    width: 18,
+    height: 18,
     backgroundColor: 'transparent',
     borderColor: '#DFDFDF',
     borderWidth: 2,

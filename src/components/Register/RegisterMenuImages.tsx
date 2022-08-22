@@ -98,7 +98,7 @@ export const RegisterMenuImages: FC<RegisterMenuImagesProps> = ({onChange, value
           onPress={openImagePicker}
           disabled={menuImages.length > 2}
         >
-          <Icon name="plus" size={24} />
+          <Icon name="plus" size={24} color="#111111" />
         </TouchableOpacity>
         <ScrollView horizontal>
           {menuImages.map((data, index) => {
@@ -114,7 +114,10 @@ export const RegisterMenuImages: FC<RegisterMenuImagesProps> = ({onChange, value
                     <Icon name="close" size={14} color="#DFDFDF" />
                   </View>
                 </TouchableOpacity>
-                <Image source={{uri: data.uri}} style={{width: 80, height: 80}} />
+                <Image
+                  source={{uri: data.uri}}
+                  style={{width: 80, height: 80, borderColor: '#DFDFDF', borderWidth: 1}}
+                />
               </View>
             );
           })}

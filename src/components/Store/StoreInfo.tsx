@@ -1,15 +1,12 @@
 import React from 'react';
 import {ScrollView, StyleSheet, View, Text} from 'react-native';
-import Swiper from 'react-native-swiper';
-import FastImage from 'react-native-fast-image';
-import {ImageInterface, RegisterStoreInterface} from '../../data';
 import {RenderImageList} from '../common/RenderImageList';
 import {StoreTime} from './StoreTime';
-import {useRecoilState, useRecoilValue} from 'recoil';
+import {useRecoilValue} from 'recoil';
 import {ImageSwiper} from '../common/ImageSwiper';
 import {DesignSystem} from '../../assets/DesignSystem';
 import {queryKey} from '../../api/queryKey';
-import {getMenuImage, getStoreImage, getStoreInfo} from '../../api/store';
+import {getMenuImage, getStoreImage} from '../../api/store';
 import {useQuery} from 'react-query';
 import {editOperationTime, storeData} from '../../state';
 
@@ -21,8 +18,6 @@ export const StoreInfo = () => {
   const storeTime = useRecoilValue(editOperationTime);
   const storeImages = useQuery(queryKey.STOREIMAGES, getStoreImage);
   const menuImages = useQuery(queryKey.MENUIMAGES, getMenuImage);
-
-  console.log(storeImages.data);
 
   return (
     <ScrollView style={{backgroundColor: '#FFFFFF'}}>
@@ -82,19 +77,17 @@ export const StoreInfo = () => {
           </View>
         </View>
 
-        <View style={[styles.infoFieldWrap]}>
-          <Text style={[DesignSystem.body1Lt, DesignSystem.grey10, {marginBottom: 8}]}>
-            대표메뉴 사진
-          </Text>
-          <View>
-            {menuImages.isLoading ? (
-              <RenderImageList imageData={[]} imageSize={100} />
-            ) : (
+        {menuImages.data.length > 0 && (
+          <View style={[styles.infoFieldWrap]}>
+            <Text style={[DesignSystem.body1Lt, DesignSystem.grey10, {marginBottom: 8}]}>
+              대표메뉴 사진
+            </Text>
+            <View>
               <RenderImageList imageData={menuImages.data} imageSize={100} />
-            )}
+            </View>
           </View>
-          {/* 가게관리에서 메뉴 이미지수정되면 살리기 */}
-        </View>
+        )}
+
         <View style={[styles.infoFieldWrap]}>
           <Text style={[DesignSystem.body1Lt, DesignSystem.grey17]}>운영시간</Text>
           <StoreTime operationData={storeTime} />

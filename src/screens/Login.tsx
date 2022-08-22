@@ -2,7 +2,6 @@ import React, {useCallback, useState, useEffect} from 'react';
 import {
   View,
   StyleSheet,
-  Text,
   TouchableOpacity,
   Image,
   Platform,
@@ -14,7 +13,6 @@ import SocialWebviewModal from '../modal/SocialWebviewModal';
 import auth from '@react-native-firebase/auth';
 import {GoogleSignin} from '@react-native-google-signin/google-signin';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {createRegister, createStore} from '../data';
 import {AuthStackParamList} from '../nav';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {customAxios} from '../api';
@@ -163,8 +161,6 @@ const Login = ({navigation}: Props) => {
     }
   };
 
-  const goMain = useCallback(() => navigation.navigate('MainNavigator'), []);
-  const goRegister = useCallback(() => navigation.navigate('Register'), []);
   return (
     <>
       <SafeAreaView style={styles.flex}>

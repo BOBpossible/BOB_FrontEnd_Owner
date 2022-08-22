@@ -39,6 +39,7 @@ export const RegisterStoreDescription: FC<RegisterStoreDescriptionProps> = ({
         }}
         value={value}
         placeholder="상호명 입력"
+        placeholderTextColor="#949494"
         selectionColor={'#6C69FF'}
         onBlur={() => setFocusedName(false)}
         onFocus={() => setFocusedName(true)}

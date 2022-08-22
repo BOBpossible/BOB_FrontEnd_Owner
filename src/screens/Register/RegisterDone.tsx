@@ -21,9 +21,9 @@ const RegisterDone = ({navigation, route}: Props) => {
   const ownerRegister = () => {
     return (
       <>
-        <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+        <View style={styles.doneWrap}>
           <Icon name="check" size={50} color="#7879F7" />
-          <Text style={[DesignSystem.h1SB, {color: '#7879F7'}]}>가입완료</Text>
+          <Text style={[DesignSystem.h1SB, styles.purpleText]}>가입완료</Text>
         </View>
         <RegisterNextButton goNext={() => goRegisterStore()} buttonState={2} />
       </>
@@ -33,10 +33,10 @@ const RegisterDone = ({navigation, route}: Props) => {
   const storeRegister = () => {
     return (
       <>
-        <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+        <View style={styles.doneWrap}>
           <Icon name="check" size={100} color="#7879F7" />
-          <Text style={[DesignSystem.h1SB, {color: '#7879F7'}]}>입정요청이</Text>
-          <Text style={[DesignSystem.h1SB, {color: '#7879F7'}]}>접수되었습니다.</Text>
+          <Text style={[DesignSystem.h1SB, styles.purpleText]}>입정요청이</Text>
+          <Text style={[DesignSystem.h1SB, styles.purpleText]}>접수되었습니다.</Text>
           <Text style={[DesignSystem.body1Long, DesignSystem.grey10, {marginTop: 24}]}>
             1 영업일 이내에 가입이 완료됩니다.
           </Text>
@@ -60,4 +60,6 @@ export default RegisterDone;
 
 const styles = StyleSheet.create({
   flex: {flex: 1},
+  doneWrap: {flex: 1, justifyContent: 'center', alignItems: 'center'},
+  purpleText: {color: '#7879F7'},
 });

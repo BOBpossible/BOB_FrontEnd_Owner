@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import type {FC} from 'react';
 import {StyleSheet, Text, TextInput, TouchableOpacity, View} from 'react-native';
 import {RegisterInterface} from '../../data';
+import {DesignSystem} from '../../assets/DesignSystem';
 
 type RegisterGenderProps = {
   setRegisterData: React.Dispatch<React.SetStateAction<RegisterInterface>>;
@@ -20,7 +21,7 @@ export const RegisterGender: FC<RegisterGenderProps> = ({
 }) => {
   return (
     <View style={[styles.genderWrap]}>
-      <Text style={[styles.formHeadText]}>성별</Text>
+      <Text style={[styles.formHeadText, DesignSystem.grey14, DesignSystem.h2SB]}>성별</Text>
       <View style={[styles.spacebetweenWrap]}>
         <TouchableOpacity
           onPress={() => {
@@ -38,7 +39,13 @@ export const RegisterGender: FC<RegisterGenderProps> = ({
                 : styles.genderUnchecked,
             ]}
           >
-            <Text style={[value === 'MALE' ? styles.genderChecked : styles.genderUnchecked]}>
+            <Text
+              style={
+                value === 'MALE'
+                  ? [DesignSystem.title4Md, DesignSystem.purple5]
+                  : [DesignSystem.body1Lt, DesignSystem.grey10]
+              }
+            >
               남자
             </Text>
           </View>
@@ -59,7 +66,13 @@ export const RegisterGender: FC<RegisterGenderProps> = ({
                 : styles.genderUnchecked,
             ]}
           >
-            <Text style={[value === 'FEMALE' ? styles.genderChecked : styles.genderUnchecked]}>
+            <Text
+              style={
+                value === 'FEMALE'
+                  ? [DesignSystem.title4Md, DesignSystem.purple5]
+                  : [DesignSystem.body1Lt, DesignSystem.grey10]
+              }
+            >
               여자
             </Text>
           </View>
@@ -80,7 +93,13 @@ export const RegisterGender: FC<RegisterGenderProps> = ({
                 : styles.genderUnchecked,
             ]}
           >
-            <Text style={[value === 'NONE' ? styles.genderChecked : styles.genderUnchecked]}>
+            <Text
+              style={
+                value === 'NONE'
+                  ? [DesignSystem.title4Md, DesignSystem.purple5]
+                  : [DesignSystem.body1Lt, DesignSystem.grey10]
+              }
+            >
               선택 안함
             </Text>
           </View>
@@ -92,8 +111,6 @@ export const RegisterGender: FC<RegisterGenderProps> = ({
 
 const styles = StyleSheet.create({
   formHeadText: {
-    fontSize: 18,
-    fontWeight: '600',
     marginBottom: 10,
   },
   spacebetweenWrap: {

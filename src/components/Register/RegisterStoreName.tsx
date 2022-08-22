@@ -27,6 +27,7 @@ export const RegisterStoreName: FC<RegisterStoreNameProps> = ({onChange, value, 
       <TextInput
         style={[
           styles.nameInput,
+          DesignSystem.grey17,
           error && focusedName
             ? styles.errorBorderFocus
             : error && !focusedName
@@ -41,6 +42,7 @@ export const RegisterStoreName: FC<RegisterStoreNameProps> = ({onChange, value, 
         }}
         value={value}
         placeholder="상호명 입력"
+        placeholderTextColor="#949494"
         selectionColor={'#6C69FF'}
         onBlur={() => setFocusedName(false)}
         onFocus={() => setFocusedName(true)}

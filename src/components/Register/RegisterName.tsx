@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import type {FC} from 'react';
 import {StyleSheet, Text, TextInput, View} from 'react-native';
 import {RegisterInterface} from '../../data';
+import {DesignSystem} from '../../assets/DesignSystem';
 
 type RegisterNameProps = {
   setRegisterData: React.Dispatch<React.SetStateAction<RegisterInterface>>;
@@ -21,9 +22,10 @@ export const RegisterName: FC<RegisterNameProps> = ({
   const [focusedName, setFocusedName] = useState(false);
   return (
     <View style={[styles.nameWrap]}>
-      <Text style={[styles.formHeadText]}>닉네임</Text>
+      <Text style={[styles.formHeadText, DesignSystem.grey14, DesignSystem.h2SB]}>닉네임</Text>
       <TextInput
         style={[
+          DesignSystem.grey17,
           styles.nameInput,
           error && focusedName
             ? styles.errorBorderFocus
@@ -39,6 +41,7 @@ export const RegisterName: FC<RegisterNameProps> = ({
         }}
         value={value}
         placeholder="닉네임 입력"
+        placeholderTextColor="#949494"
         selectionColor={'#6C69FF'}
         onBlur={() => setFocusedName(false)}
         onFocus={() => setFocusedName(true)}
@@ -68,8 +71,6 @@ const styles = StyleSheet.create({
   focusBorder: {borderColor: '#6C69FF', borderWidth: 1},
   unfocusBorder: {borderColor: '#DFDFDF', borderWidth: 1},
   formHeadText: {
-    fontSize: 18,
-    fontWeight: '600',
     marginBottom: 10,
   },
 });

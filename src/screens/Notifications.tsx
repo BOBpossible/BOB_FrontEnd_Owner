@@ -1,80 +1,20 @@
 import React from 'react';
-import {View, StyleSheet, FlatList, SafeAreaView} from 'react-native';
+import {View, StyleSheet, FlatList, SafeAreaView, TouchableOpacity, Text} from 'react-native';
 import type {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {MissionStackParamList} from '../nav/MissionNavigator';
 import {MyHeader} from '../components/My/MyHeader';
 import {NotificationCard} from '../components/NotificationCard';
-import {useQuery, useQueryClient} from 'react-query';
+import {useMutation, useQuery, useQueryClient} from 'react-query';
 import {queryKey} from '../api/queryKey';
-import {getNotifications} from '../api/my';
+import {getNotifications, patchNotificationsReadAll} from '../api/my';
 import {INotiType} from '../data/IMissions';
 import {NoBobpool} from '../components/common/NoBobpool';
 import {useRecoilValue} from 'recoil';
 import {RCstoreId} from '../state';
+import {DesignSystem} from '../assets/DesignSystem';
 
 type Props = NativeStackScreenProps<MissionStackParamList, 'Notifications'>;
-const dummy = [
-  {
-    checked: true,
-    date: '2022-07-19T06:44:56.115Z',
-    id: 0,
-    name: '이릉으',
-    pushType: 'OWNER_SUCCESS',
-    subId: 0,
-    subTitle: 'string',
-    title: '성공요청이들어왔습니다',
-  },
-  {
-    checked: false,
-    date: '2022-07-19T06:44:56.115Z',
-    id: 10,
-    name: '고구마',
-    pushType: 'OWNER_SUCCESS',
-    subId: 110,
-    subTitle: '님의성공여부를확인후수락',
-    title: '성공요청이들어왔습니다',
-  },
-  {
-    checked: false,
-    date: '2022-07-19T06:44:56.115Z',
-    id: 20,
-    name: '감자',
-    pushType: 'OWNER_PROGRESS',
-    subId: 220,
-    subTitle: '님의성공여부를확인후수락',
-    title: '고객님이미션도전했습니다',
-  },
-  {
-    checked: false,
-    date: '2022-07-19T06:44:56.115Z',
-    id: 30,
-    name: '홍길동',
-    pushType: 'OWNER_PROGRESS',
-    subId: 330,
-    subTitle: '님이 현재 미션 진행중입니다',
-    title: '고객님이미션도전했습니다',
-  },
-  {
-    checked: false,
-    date: '2022-07-19T06:44:56.115Z',
-    id: 45,
-    name: '',
-    pushType: 'OWNER_REVIEW',
-    subId: 0,
-    subTitle: '리뷰를 확인해쥣고 . . .',
-    title: '새로운 리뷰가 작성되었습니다',
-  },
-  {
-    checked: false,
-    date: '2022-07-19T06:44:56.115Z',
-    id: 50,
-    name: '홍길동',
-    pushType: 'ANSWER',
-    subId: 330,
-    subTitle: '문의제목...에대한 답변ㄴ이디ㅡㅇ록',
-    title: '(1:1)문의 답변이등록되었습니다',
-  },
-];
+
 export const Notifications = ({navigation, route}: Props) => {
   const queryClient = useQueryClient();
   const storeId = useRecoilValue(RCstoreId);
@@ -87,14 +27,45 @@ export const Notifications = ({navigation, route}: Props) => {
   const goBack = () => {
     navigation.goBack();
   };
+
+  const readAllMutation = useMutation(() => patchNotificationsReadAll(), {
+    onSuccess: (data) => {
+      console.log('알림확인 모두 전환 성공: ', data);
+      queryClient.invalidateQueries('notifications');
+    },
+    onError: (err) => {
+      console.log('알림확인 모두 전환 실패: ', err);
+    },
+  });
+
   return (
     <>
       <SafeAreaView style={{flex: 0, backgroundColor: '#FFFFFF'}} />
       <SafeAreaView style={[styles.flex]}>
         <MyHeader goBack={goBack} title={'알림'} />
+
         {DataNoti.data?.length !== 0 ? (
           <FlatList
             style={{marginLeft: 16, marginRight: 16}}
+            ListHeaderComponent={() => {
+              return (
+                <View
+                  style={{
+                    width: '100%',
+                    justifyContent: 'flex-end',
+                    flexDirection: 'row',
+                  }}
+                >
+                  <TouchableOpacity
+                    onPress={() => {
+                      readAllMutation.mutate();
+                    }}
+                  >
+                    <Text style={[DesignSystem.grey8, DesignSystem.body2Lt]}>모두 읽음</Text>
+                  </TouchableOpacity>
+                </View>
+              );
+            }}
             showsVerticalScrollIndicator={false}
             contentContainerStyle={{paddingBottom: 60, marginTop: 12}}
             scrollEventThrottle={10}

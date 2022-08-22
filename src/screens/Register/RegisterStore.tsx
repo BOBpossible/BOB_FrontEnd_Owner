@@ -17,7 +17,7 @@ const options: ImageLibraryOptions = {
 };
 type Props = NativeStackScreenProps<AuthStackParamList, 'RegisterStore'>;
 
-const RegisterStore = ({navigation, route}: Props) => {
+const RegisterStore = ({navigation}: Props) => {
   const [imageUri, setImageUri] = useState<ImageInterface[]>([]);
   const goResult = () => {
     navigation.navigate('RegisterDone', {status: 0});
@@ -122,7 +122,7 @@ const RegisterStore = ({navigation, route}: Props) => {
               onPress={openImagePicker}
               disabled={imageUri.length >= 4}
             >
-              <Icon name="plus" size={24} />
+              <Icon name="plus" size={24} color="#111111" />
             </TouchableOpacity>
 
             {/* 배열에 있는 이미지 리스트 렌더링 (삭제 버튼 포함) */}

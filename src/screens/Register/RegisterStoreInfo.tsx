@@ -18,14 +18,10 @@ import {RegisterStoreTable} from '../../components/Register/RegisterStoreTable';
 import {RegisterStoreIntro} from '../../components/Register/RegisterStoreIntro';
 import {RegisterStoreAddressDetail} from '../../components/Register/RegisterStoreAddressDetail';
 import {DesignSystem} from '../../assets/DesignSystem';
-import {useRecoilState} from 'recoil';
-import {storeData} from '../../state';
 
 type Props = NativeStackScreenProps<AuthStackParamList, 'RegisterStoreInfo'>;
 
-const RegisterStoreInfo = ({navigation, route}: Props) => {
-  const [RCstoreData, setRCstoreData] = useRecoilState(storeData);
-
+const RegisterStoreInfo = ({navigation}: Props) => {
   const {
     control,
     handleSubmit,
@@ -200,7 +196,7 @@ const RegisterStoreInfo = ({navigation, route}: Props) => {
             )}
           </ScrollView>
         </KeyboardAvoidingView>
-        <RegisterNextButton goNext={handleSubmit(onSubmit)} buttonState={isValid ? 1 : 0} />
+        <RegisterNextButton goNext={handleSubmit(onSubmit)} buttonState={1} />
       </SafeAreaView>
     </>
   );

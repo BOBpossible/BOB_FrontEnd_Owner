@@ -30,7 +30,7 @@ export const MissionAcceptCard: FC<IMissionSuccessType> = ({date, dayOfWeek, mis
 
   const queryClient = useQueryClient();
   const missionDenyMutation = useMutation(
-    (missionId: number) => patchMissionDeny(missionId),
+    () => patchMissionDeny(missionId),
     {
       onSuccess: (data) => {
         console.log('미션 거절 성공: ', data);
@@ -42,7 +42,7 @@ export const MissionAcceptCard: FC<IMissionSuccessType> = ({date, dayOfWeek, mis
     },
   );
   const missionAcceptMutation = useMutation(
-    (missionId: number) => patchMissionAccept(missionId),
+    () => patchMissionAccept(missionId),
     {
       onSuccess: (data) => {
         console.log('미션 수락 성공: ', data);
@@ -55,13 +55,13 @@ export const MissionAcceptCard: FC<IMissionSuccessType> = ({date, dayOfWeek, mis
   );
   function handleDeny() {
     //거절요청 버튼 누를 시
-    missionDenyMutation.mutate(missionId);
+    missionDenyMutation.mutate();
     console.log('거절');
   }
   function handleAccept() {
     //수락 버튼 누를 시
     setAcceptDisabled(true);
-    missionAcceptMutation.mutate(missionId);
+    missionAcceptMutation.mutate();
     console.log('수락');
   }
   const buttonWidth = (Dimensions.get('screen').width - 66 - 15 ) / 2;

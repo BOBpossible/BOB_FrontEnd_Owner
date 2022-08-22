@@ -18,7 +18,7 @@ import {ImageSwiper} from '../components/common/ImageSwiper';
 import {ImageInterface} from '../data';
 import {ImageLibraryOptions, launchCamera, launchImageLibrary} from 'react-native-image-picker';
 import {postStoreImages} from '../api/register';
-import {getStoreImage, patchDeleteStoreImage} from '../api/store';
+import {getStoreId, getStoreImage, patchDeleteStoreImage} from '../api/store';
 import {useMutation, useQuery, useQueryClient} from 'react-query';
 import {queryKey} from '../api/queryKey';
 
@@ -38,7 +38,7 @@ export const ImageSwiperModal: FC<ImageSwiperModalProps> = ({visible, closeImage
   const queryClient = useQueryClient();
   const storeImageList = useQuery(queryKey.STOREIMAGES, getStoreImage);
   const storeImagesMutation = useMutation(
-    (data: ImageInterface[]) => postStoreImages(data, storeId),
+    (data: ImageInterface[]) => postStoreImages(data, storeId.data),
     {
       onMutate: async (image) => {
         // Cancel any outgoing refetches (so they don't overwrite our optimistic update)
@@ -101,7 +101,8 @@ export const ImageSwiperModal: FC<ImageSwiperModalProps> = ({visible, closeImage
       },
     },
   );
-  const storeId = useRecoilValue(RCstoreId);
+
+  const storeId = useQuery(queryKey.STOREID, () => getStoreId());
 
   useEffect(() => {
     if (storeImageList.data.length > 0) {

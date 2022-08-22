@@ -24,6 +24,7 @@ export const RegisterStoreAddressDetail: FC<RegisterStoreAddressDetailProps> = (
       <TextInput
         style={[
           styles.nameInput,
+          DesignSystem.grey17,
           error && focusedDetail
             ? styles.errorBorderFocus
             : error && !focusedDetail

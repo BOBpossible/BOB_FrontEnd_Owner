@@ -93,6 +93,7 @@ const StoreMissionPayment = ({navigation, route}: Props) => {
                 style={[styles.cancelContent]}
                 multiline={true}
                 placeholder={'취소 사유를 작성해주세요.'}
+                placeholderTextColor="#949494"
                 selectionColor={'#6C69FF'}
                 onChangeText={(text) => {
                   setCancelContent(text);

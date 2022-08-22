@@ -60,6 +60,7 @@ export const MyWriteInquiry = () => {
                 }}
                 value={title}
                 placeholder="문의 제목 입력"
+                placeholderTextColor="#949494"
                 selectionColor={'#6C69FF'}
                 onBlur={() => setFocusedTitle(false)}
                 onFocus={() => setFocusedTitle(true)}
@@ -83,6 +84,7 @@ export const MyWriteInquiry = () => {
                 }}
                 value={body}
                 placeholder="문의 내용 작성"
+                placeholderTextColor="#949494"
                 multiline={true}
                 selectionColor={'#6C69FF'}
                 onBlur={() => setFocusedBody(false)}

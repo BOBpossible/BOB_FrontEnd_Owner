@@ -20,7 +20,7 @@ const RegisterForm = ({navigation, route}: Props) => {
   const {
     control,
     handleSubmit,
-    formState: {errors, isValid},
+    formState: {errors},
   } = useForm({
     mode: 'onChange',
     defaultValues: {
@@ -43,7 +43,7 @@ const RegisterForm = ({navigation, route}: Props) => {
       console.log('post register:', error);
     }
   };
-  const onSubmit = async (data: any) => {
+  const onSubmit = async () => {
     await postRegister();
     console.log('다음 누름');
     navigation.navigate('RegisterDone', {status: 0});
@@ -137,6 +137,10 @@ const RegisterForm = ({navigation, route}: Props) => {
             }}
             name="phone"
           />
+
+          {errors.phone?.type === 'required' && (
+            <Text style={[styles.errorMessage]}>필수 입력사항입니다.</Text>
+          )}
           {authError && authKey !== '-1' && (
             <Text style={[styles.errorMessage]}>인증이 완료되지 않았습니다.</Text>
           )}

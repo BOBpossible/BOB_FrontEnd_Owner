@@ -17,6 +17,11 @@ export const patchNotificationsStatus = async (notiId: number) => {
   return response.data.message;
 };
 
+export const patchNotificationsReadAll = async () => {
+  const response = await customAxios().patch('/api/v1/push-notifications/me/all');
+  return response.data.message;
+};
+
 //마이페이지 - 알림 설정 조회
 export const getNotiSettting = async () => {
   const response = await customAxios().get('/api/v1/owners/me/notification');

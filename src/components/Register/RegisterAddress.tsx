@@ -40,7 +40,7 @@ export const RegisterAddress: FC<RegisterAddressProps> = ({onChange, value, erro
           <Text style={[value === '' ? styles.placeholder : DesignSystem.grey17]}>
             {value === '' ? '주소 선택' : value}
           </Text>
-          <Icon name="chevron-down" size={24} />
+          <Icon name="chevron-down" size={24} color="#111111" />
         </View>
       </TouchableOpacity>
     </View>

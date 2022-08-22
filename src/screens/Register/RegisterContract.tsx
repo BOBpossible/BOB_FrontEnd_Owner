@@ -1,12 +1,12 @@
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import React, {useEffect, useState} from 'react';
-import {View, StyleSheet, Text, TouchableOpacity, Image, SafeAreaView} from 'react-native';
+import React from 'react';
+import {View, StyleSheet, Text, TouchableOpacity, SafeAreaView} from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import {DesignSystem} from '../../assets/DesignSystem';
 import RenderHtml, {HTMLContentModel, HTMLElementModel} from 'react-native-render-html';
 import {widthPercentageToDP as wp} from 'react-native-responsive-screen';
 import {calWidth} from '../../assets/CalculateLength';
+import {AuthStackParamList} from '../../nav';
 
 const customHTMLElementModels = {
   body: HTMLElementModel.fromCustomModel({
@@ -741,6 +741,8 @@ const Contract4 = {
   </html>
   `,
 };
+
+type Props = NativeStackScreenProps<AuthStackParamList, 'RegisterContract'>;
 
 const RegisterContract = ({navigation, route}: Props) => {
   const goBack = () => {

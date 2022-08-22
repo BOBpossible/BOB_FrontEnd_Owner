@@ -3,6 +3,7 @@ import type {FC} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {OperationTime} from '../../data';
 import {CheckBoxRectangle} from '../common/CheckBoxRectangle';
+import {DesignSystem} from '../../assets/DesignSystem';
 
 type RegisterTimeProps = {
   operationData: OperationTime[];
@@ -79,7 +80,7 @@ export const StoreTime: FC<RegisterTimeProps> = ({operationData}) => {
                 <View
                   style={{flex: 0.78, height: 30, alignItems: 'center', justifyContent: 'center'}}
                 >
-                  <Text>휴무</Text>
+                  <Text style={[DesignSystem.body1Lt, DesignSystem.grey8]}>휴무</Text>
                 </View>
               </View>
             );

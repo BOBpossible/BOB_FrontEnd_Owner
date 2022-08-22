@@ -55,7 +55,7 @@ export const RegisterTime = () => {
                     }}
                   >
                     <View>
-                      <Text>
+                      <Text style={[DesignSystem.body1Lt, DesignSystem.grey17]}>
                         {processTime(item.startTime)}~{processTime(item.endTime)}
                       </Text>
                     </View>
@@ -66,7 +66,7 @@ export const RegisterTime = () => {
                 >
                   <TouchableOpacity style={{height: 50, justifyContent: 'center'}}>
                     <View>
-                      <Text>
+                      <Text style={[DesignSystem.body1Lt, DesignSystem.grey17]}>
                         {processTime(item.breakStartTime)}~{processTime(item.breakEndTime)}
                       </Text>
                     </View>
@@ -94,7 +94,7 @@ export const RegisterTime = () => {
                 <View
                   style={{flex: 0.78, height: 30, alignItems: 'center', justifyContent: 'center'}}
                 >
-                  <Text>휴무</Text>
+                  <Text style={[DesignSystem.body1Lt, DesignSystem.grey8]}>휴무</Text>
                 </View>
               </View>
             );
@@ -112,13 +112,13 @@ export const RegisterTime = () => {
       </View>
       <View style={[styles.columnWrap]}>
         <View style={{flex: 0.22, height: 30, alignItems: 'center', justifyContent: 'center'}}>
-          <Text>영업일</Text>
+          <Text style={[DesignSystem.body1Lt, DesignSystem.grey7]}>영업일</Text>
         </View>
         <View style={{flex: 0.39, height: 30, alignItems: 'center', justifyContent: 'center'}}>
-          <Text>영업 시간</Text>
+          <Text style={[DesignSystem.body1Lt, DesignSystem.grey7]}>영업 시간</Text>
         </View>
         <View style={{flex: 0.39, height: 30, alignItems: 'center', justifyContent: 'center'}}>
-          <Text>브레이크 타임</Text>
+          <Text style={[DesignSystem.body1Lt, DesignSystem.grey7]}>브레이크 타임</Text>
         </View>
       </View>
       {renderedTimeTable()}

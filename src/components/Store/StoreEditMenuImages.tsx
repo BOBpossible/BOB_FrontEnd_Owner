@@ -9,7 +9,7 @@ import {useRecoilState, useRecoilValue} from 'recoil';
 import {RCstoreId, registerMenuImage} from '../../state';
 import {queryKey} from '../../api/queryKey';
 import {useMutation, useQuery, useQueryClient} from 'react-query';
-import {getMenuImage, getStoreImage, patchDeleteMenuImage} from '../../api/store';
+import {getMenuImage, getStoreId, getStoreImage, patchDeleteMenuImage} from '../../api/store';
 import {postStoreMenuImages} from '../../api/register';
 
 const options: ImageLibraryOptions = {
@@ -23,22 +23,68 @@ export const StoreEditMenuImages = () => {
   const queryClient = useQueryClient();
   const menuImages = useQuery(queryKey.MENUIMAGES, getMenuImage);
   const menuImagesMutation = useMutation(
-    (data: ImageInterface[]) => postStoreMenuImages(data, storeId),
+    (data: ImageInterface[]) => postStoreMenuImages(data, storeId.data),
+
     {
-      onSuccess: () => {
-        queryClient.invalidateQueries(queryKey.MENUIMAGES);
+      onMutate: async (image) => {
+        // Cancel any outgoing refetches (so they don't overwrite our optimistic update)
+        await queryClient.cancelQueries(queryKey.MENUIMAGES);
+
+        // Snapshot the previous value
+        const previousImages: {imageUrl: string; id: string}[] = queryClient.getQueryData(
+          queryKey.MENUIMAGES,
+        );
+
+        // Optimistically update to the new value
+        queryClient.setQueryData(queryKey.MENUIMAGES, [
+          ...previousImages,
+          {imageUrl: image[0].uri},
+        ]);
+
+        // Return a context with the previous and new todo
+        return {previousImages, image};
       },
-      onError: (err) => {
-        console.log(err);
+      // If the mutation fails, use the context we returned above
+      onError: (err, newTodo, context) => {
+        queryClient.setQueryData(queryKey.MENUIMAGES, context?.previousImages);
+      },
+      // Always refetch after error or success:
+      onSettled: () => {
+        queryClient.invalidateQueries(queryKey.MENUIMAGES);
       },
     },
   );
-  const deleteMutation = useMutation((id) => patchDeleteMenuImage(id), {
-    onSuccess: () => {
+  const deleteMutation = useMutation((menuImageId) => patchDeleteMenuImage(menuImageId), {
+    onMutate: async (id: string) => {
+      // Cancel any outgoing refetches (so they don't overwrite our optimistic update)
+      await queryClient.cancelQueries(queryKey.MENUIMAGES);
+
+      // Snapshot the previous value
+      const previousImages: {imageUrl: string; id: string}[] = queryClient.getQueryData(
+        queryKey.MENUIMAGES,
+      );
+
+      // Optimistically update to the new value
+      queryClient.setQueryData(queryKey.MENUIMAGES, () =>
+        previousImages.filter((image) => {
+          return image.id !== id;
+        }),
+      );
+
+      // Return a context with the previous and new todo
+      return {previousImages, id};
+    },
+    // If the mutation fails, use the context we returned above
+    onError: (err, newTodo, context) => {
+      queryClient.setQueryData(queryKey.MENUIMAGES, context?.previousImages);
+    },
+    // Always refetch after error or success:
+    onSettled: () => {
       queryClient.invalidateQueries(queryKey.MENUIMAGES);
     },
   });
-  const storeId = useRecoilValue(RCstoreId);
+  const storeId = useQuery(queryKey.STOREID, () => getStoreId());
+
   //이미지 등록 시작!
   const openImagePicker = () => {
     Alert.alert('사진', '어떻게 가져올까요?', [

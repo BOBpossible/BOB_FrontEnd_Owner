@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {View, StyleSheet, Text, TouchableOpacity, SafeAreaView} from 'react-native';
+import {View, StyleSheet, Text, TouchableOpacity, SafeAreaView, Linking} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {MyUser} from '../../components/My/MyUser';
 import {useNavigation} from '@react-navigation/native';
@@ -45,6 +45,11 @@ const MyPage = () => {
         <TouchableOpacity onPress={() => navigation.navigate('MyInquiry')}>
           <View style={[styles.myMenuWrap]}>
             <Text style={[styles.userMenu]}>1:1 문의</Text>
+          </View>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => Linking.openURL('https://forms.gle/GUJiARkGXMXhmzKV7')}>
+          <View style={[styles.myMenuWrap]}>
+            <Text style={[styles.userMenu]}>의견 남기기</Text>
           </View>
         </TouchableOpacity>
         <TouchableOpacity onPress={logout}>

@@ -28,6 +28,7 @@ export const RegisterMenuName: FC<RegisterMenuNameProps> = ({onChange, value, er
       <TextInput
         style={[
           styles.nameInput,
+          DesignSystem.grey17,
           error && focusedName
             ? styles.errorBorderFocus
             : error && !focusedName
@@ -42,6 +43,7 @@ export const RegisterMenuName: FC<RegisterMenuNameProps> = ({onChange, value, er
         }}
         value={value}
         placeholder="대표메뉴 이름 입력"
+        placeholderTextColor="#949494"
         selectionColor={'#6C69FF'}
         onBlur={() => setFocusedName(false)}
         onFocus={() => setFocusedName(true)}

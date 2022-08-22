@@ -3,6 +3,7 @@ import {
   FlatList,
   RefreshControl,
   SafeAreaView,
+  StatusBar,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -117,16 +118,6 @@ const Mission = () => {
     queryKey.MISSIONSSUCCESS,
     getMissionsSuccess,
   );
-  console.log('DataMissionsSuccess', DataMissionsSuccess.data);
-  console.log(
-    'DataMissionsProgress ownerMissionDto----',
-    DataMissionsProgress.data?.ownerMissionDto,
-  );
-  console.log(
-    'DataMissionsSuccess--길이',
-    DataMissionsSuccess.data?.length,
-    DataMissionsSuccess.data,
-  );
 
   useEffect(() => {
     seperate.current = '2022-00-00T15:16:39.528Z'.slice(0, 10); //구분날짜 초기화
@@ -183,6 +174,7 @@ const Mission = () => {
     <>
       <SafeAreaView style={{flex: 0, backgroundColor: '#FFFFFF'}} />
       <SafeAreaView style={[styles.flex, {backgroundColor: '#F8F8F8'}]}>
+        <StatusBar barStyle={'dark-content'} backgroundColor="white" />
         <View style={[styles.screenHeaderWrap]}>
           <Text style={[DesignSystem.h2SB, {color: 'black'}]}>미션</Text>
           <TouchableOpacity

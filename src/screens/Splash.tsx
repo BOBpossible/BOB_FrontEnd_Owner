@@ -3,6 +3,8 @@ import {View, StyleSheet, Image, SafeAreaView, Animated} from 'react-native';
 import {useRecoilState} from 'recoil';
 import {RCstoreId} from '../state';
 import {getStoreId} from '../api/store';
+import {useQuery} from 'react-query';
+import {queryKey} from '../api/queryKey';
 
 const moveUp = (progressValue: Animated.Value) => {
   Animated.timing(progressValue, {
@@ -19,15 +21,9 @@ const Splash = () => {
     moveUp(progressValue);
   }, 300);
 
-  const [storeId, setStoreId] = useRecoilState(RCstoreId);
-  const getStoreIdRc = async () => {
-    const re = await getStoreId();
-    setStoreId(re);
-  };
-  useEffect(() => {
-    getStoreIdRc();
-  }, []);
-  console.log('storeId 저장됨 ? ', storeId);
+  const storeId = useQuery(queryKey.STOREID, () => getStoreId());
+
+  console.log('storeId 저장됨 ? ', storeId.data);
 
   return (
     <SafeAreaView style={[styles.flex]}>

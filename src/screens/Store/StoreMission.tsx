@@ -17,10 +17,8 @@ type Props = StackScreenProps<StoreStackParamList, 'StoreMission'>;
 const StoreMission = ({navigation, route}: Props) => {
   const [missionManageModal, setMissionManageModal] = useState('');
   const [pressedMissionGId, setPressedMissionGId] = useRecoilState(RCpressedMissionGroupId);
-  const [eyeballs, setEyeballs] = useState(1);
-  getMissionManageCount().then((res) => {
-    setEyeballs(res);
-  });
+  const eyeballs = useQuery(queryKey.EYEBALLS, () => getMissionManageCount());
+
   const DataMissionManage = useQuery(queryKey.MISSIONMANAGE, getMissionManage);
   console.log('DataMissionManage', DataMissionManage);
 
@@ -40,7 +38,7 @@ const StoreMission = ({navigation, route}: Props) => {
 
         <View style={[styles.missionUserNumberWrap]}>
           <Text style={[styles.missionStatText]}>최근 7일 미션이 총 </Text>
-          <Text style={[styles.missionStatPointText]}>{eyeballs}명</Text>
+          <Text style={[styles.missionStatPointText]}>{eyeballs.data}명</Text>
           <Text style={[styles.missionStatText]}> 에게 노출되었어요</Text>
         </View>
         {DataMissionManage.data?.length !== 0 ? (

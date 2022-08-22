@@ -24,6 +24,7 @@ import {IStoreReview} from '../../data/IStore';
 import {NoBobpool} from '../../components/common/NoBobpool';
 import {useRecoilValue} from 'recoil';
 import {RCstoreId} from '../../state';
+import {getStoreId} from '../../api/store';
 
 const RATEHALFWIDTH = (Dimensions.get('screen').width - 27) / 2;
 type Props = StackScreenProps<StoreStackParamList, 'StoreReview'>;
@@ -35,11 +36,12 @@ const StoreReview = ({navigation, route}: Props) => {
     setReviewPhoto({uri: imageSource});
     setPhotoModal(true);
   };
-  const storeId = useRecoilValue(RCstoreId);
+
+  const storeId = useQuery(queryKey.STOREID, () => getStoreId());
 
   const reviewList = useInfiniteQuery(
-    [queryKey.STOREREVIEWLIST, storeId],
-    ({pageParam}) => getStoreReviewList({pageParam}, storeId),
+    [queryKey.STOREREVIEWLIST, storeId.data],
+    ({pageParam}) => getStoreReviewList({pageParam}, storeId.data),
     {
       getNextPageParam: (lastPage, pages) => {
         if (lastPage.data.result.last === false) {
@@ -51,14 +53,13 @@ const StoreReview = ({navigation, route}: Props) => {
     },
   );
 
-  const reviewInfo = useQuery(queryKey.STOREID, () => getStoreData(storeId)); //평점, 리뷰수는 여기 api에서 얻음..
+  const reviewInfo = useQuery(queryKey.STORERATING, () => getStoreData(storeId.data)); //평점, 리뷰수는 여기 api에서 얻음..
   // console.log('평점, 리뷰수 용 reviewInfo.data', reviewInfo.data);
   const refreshStoreReview = () => {
     console.log('review refetch');
     reviewList.refetch();
     reviewInfo.refetch();
   };
-  refreshStoreReview;
   return (
     <>
       <SafeAreaView style={{flex: 0, backgroundColor: '#FFFFFF'}} />

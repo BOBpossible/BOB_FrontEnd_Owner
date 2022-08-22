@@ -124,6 +124,7 @@ export const StoreReviewCard: FC<StoreReviewCardProps> = ({
               style={[styles.replyContent]}
               multiline={true}
               placeholder={'답글 작성'}
+              placeholderTextColor="#949494"
               selectionColor={'#6C69FF'}
               onChangeText={(text: string) => {
                 setReplyContent(text);

@@ -32,6 +32,10 @@ export const EditTimeModal: FC<EditTimeModalProps> = ({visible, closeEditTimeMod
     },
   );
 
+  useEffect(() => {
+    setEditOperationData(editTime[timeIndex]);
+  }, [visible]);
+
   const submitChangedDate = () => {
     const operationTimeId = editOperationData.operationTimeId;
     timeMutation.mutate(operationTimeId as number);
