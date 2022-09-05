@@ -20,6 +20,7 @@
 		DA396EBF286EABB400083FA3 /* Pretendard-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DA396EBA286EABB400083FA3 /* Pretendard-SemiBold.ttf */; };
 		DA396EC0286EABB400083FA3 /* Poppins-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DA396EBB286EABB400083FA3 /* Poppins-Bold.ttf */; };
 		DA396EC1286EABB400083FA3 /* Pretendard-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DA396EBC286EABB400083FA3 /* Pretendard-Light.ttf */; };
+		DA3AA13E28C5C6C400EAE272 /* AppCenter-Config.plist in Resources */ = {isa = PBXBuildFile; fileRef = DA3AA13D28C5C6C400EAE272 /* AppCenter-Config.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,7 @@
 		DA396EBA286EABB400083FA3 /* Pretendard-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-SemiBold.ttf"; sourceTree = "<group>"; };
 		DA396EBB286EABB400083FA3 /* Poppins-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Bold.ttf"; sourceTree = "<group>"; };
 		DA396EBC286EABB400083FA3 /* Pretendard-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Light.ttf"; sourceTree = "<group>"; };
+		DA3AA13D28C5C6C400EAE272 /* AppCenter-Config.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "AppCenter-Config.plist"; sourceTree = "<group>"; };
 		DB2F8D200F88ADC8B4FDCCFB /* Pods-BOB_FrontEnd_Owner-BOB_FrontEnd_OwnerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BOB_FrontEnd_Owner-BOB_FrontEnd_OwnerTests.debug.xcconfig"; path = "Target Support Files/Pods-BOB_FrontEnd_Owner-BOB_FrontEnd_OwnerTests/Pods-BOB_FrontEnd_Owner-BOB_FrontEnd_OwnerTests.debug.xcconfig"; sourceTree = "<group>"; };
 		DC7E3CFC06C0E3075EE445B5 /* Pods-BOB_FrontEnd_Owner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BOB_FrontEnd_Owner.debug.xcconfig"; path = "Target Support Files/Pods-BOB_FrontEnd_Owner/Pods-BOB_FrontEnd_Owner.debug.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
@@ -105,6 +107,7 @@
 		13B07FAE1A68108700A75B9A /* BOB_FrontEnd_Owner */ = {
 			isa = PBXGroup;
 			children = (
+				DA3AA13D28C5C6C400EAE272 /* AppCenter-Config.plist */,
 				DA0493B92874A1E100F9CA59 /* GoogleService-Info.plist */,
 				DA0493B82874A0D600F9CA59 /* BOB_FrontEnd_Owner.entitlements */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
@@ -293,6 +296,7 @@
 			files = (
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				DA0493BA2874A1E200F9CA59 /* GoogleService-Info.plist in Resources */,
+				DA3AA13E28C5C6C400EAE272 /* AppCenter-Config.plist in Resources */,
 				DA396EC0286EABB400083FA3 /* Poppins-Bold.ttf in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				DA396EBF286EABB400083FA3 /* Pretendard-SemiBold.ttf in Resources */,

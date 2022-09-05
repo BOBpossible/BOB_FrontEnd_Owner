@@ -14,6 +14,7 @@ import {getRegisterStatus, postFcmToken, postToken} from './src/api';
 import {QueryClient, QueryClientProvider} from 'react-query';
 import messaging from '@react-native-firebase/messaging';
 import {AppRegistry} from 'react-native';
+import codePush from 'react-native-code-push';
 
 Icon.loadFont();
 enableScreens();
@@ -30,7 +31,7 @@ async function requestUserPermission() {
     console.log('Authorization status:', authStatus);
   }
 }
-export default function App() {
+const App = () => {
   const Stack = createStackNavigator();
   const [loading, setLoading] = useState(true); //스플래시 화면을 위한 boolean
   const [isLogin, setIsLogin] = useState<boolean>(false); //로컬스토리지에서 로그인 확인후 어디로 보낼지 결정
@@ -106,4 +107,6 @@ export default function App() {
       </RecoilRoot>
     </QueryClientProvider>
   );
-}
+};
+
+export default codePush(App);

@@ -35,7 +35,7 @@ export const RegisterStoreDescription: FC<RegisterStoreDescriptionProps> = ({
         ]}
         onChangeText={(text) => {
           onChange(text);
-          setRegisterData({...registerData, description: text});
+          setRegisterData({...registerData, intro: text});
         }}
         value={value}
         placeholder="상호명 입력"
